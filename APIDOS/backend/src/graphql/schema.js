@@ -9,11 +9,14 @@ const typeDefs = `
         ProyectoID(id:String!): Proyecto       
         Usuarios : [Usuario]
         UsuarioEstudiante(rol : String!) : [Usuario]
+        UsuarioEstado(estadoUsuario:String!) : [Usuario]
         GestionInscripciones : [GestionInscripcion]
         GestionInscripcionByEst(idEstudiante : String!) : [GestionInscripcion]
         GestionInscripcionByEstadoIns(estadoInscripcion : String!) : [GestionInscripcion]
         GestionAvances : [GestionAvance]
-        GestionAvanceByidPro(idProyecto : String!) : [GestionAvance]    
+        GestionAvanceByidPro(idProyecto : String!) : [GestionAvance]
+        GestionInscripcionByidEstEstado(idEstudiante: String!,estadoInscripcion: String!) : [GestionInscripcion]    
+        Login( correo: String! , password : String!) : String
     }
     
     type Mutation{
