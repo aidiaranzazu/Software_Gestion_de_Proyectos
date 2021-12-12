@@ -1,0 +1,115 @@
+.contenedor{
+    width: 32%;
+    height: 70%;
+    background: rgba(0, 0, 0, 0.363); 
+    color: #fff;
+    top: 53%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing:border-box;
+    padding: 1% 1%;
+    border-radius: 5%;
+    font-family: sans-serif;
+}
+
+.opciones{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    margin: 2%;
+    margin-top: 5%;
+}
+
+.contenedor input{
+    width: 625%;
+    
+}
+.seleccionar {
+    width: 38%;
+}
+
+h3{
+    text-align: center;
+    color: #57ee32;
+    margin-bottom: 0;
+}
+
+.opciones2{
+    display: flex;
+    padding: 1%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.opciones2 input{
+    border-radius: 6px;
+    height: 4vh;
+    width: 12vw;
+    margin-bottom: 3%;
+}
+
+.opciones select,
+.opciones2 select,
+.selec select
+{
+    border-radius: 6px;
+    height: 5vh;
+    width: 12vw;
+    }
+
+.opciones input
+{
+    border-radius: 6px;
+    height: 4vh;
+    width: 12vw;
+}
+
+
+.selec{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5%;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+.botones1{
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 9%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.botones1 button:hover{
+    border: inset 1px #ccc;  
+    
+}
+
+button{
+    height: 30px;
+    width: 130px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #050505;
+    background-color: #57ee32;
+    font-weight: bold;   
+    border: outset 1px #ccc;
+    
+}
+
+#fecha{
+    margin-left: 30%;
+    width: 12vw;
+    margin-top: 2%;
+    border-radius: 6px;
+}
+
+hr{
+    border-color: #57ee32;
+}
+
