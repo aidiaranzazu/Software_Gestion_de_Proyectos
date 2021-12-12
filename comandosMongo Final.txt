@@ -1,0 +1,240 @@
+Use dbProyectosInvet
+db  
+//historia de usuario 1 y 2
+//insercion de un documento en la coleccion usuarios
+db.usuarios.insertOne({  "nombre": 'carlos Zuñiga',
+			  "rol":['Lider'],
+			  "correo":'32ec@hotmail.com',	
+			  "contraseña":'emjcnde3'
+		          "estadoUsuario":'Pediente'		
+			})
+db.usuarios.insertMany([{ "nombre": 'Andres Betancour',
+			  "rol":['Activo']},
+			  "correo":'dwedew43@hotmail.com',	
+			  "contraseña":'4234'
+			   "estadoUsuario":'Pediente'
+			},	
+			{
+			  "nombre": Luisa Camila Muños Riveros,
+			  "rol":['Lider'],
+			  "correo":'usa456@hotmail.com',	
+			  "contraseña":'gjfgnj6745' 
+			  "estadoUsuario":'Pediente'	
+			}
+])
+//historia de usuaro 3
+//comando para actualizar la coleccion usuarios
+db.usuarios.updateOne(
+   { _id:ObjectId("6196826abc61701fafff8289") },
+   {
+     $set: { "rol": ["Administrador"]},
+  
+   }
+)
+
+//historia de usuario 4
+//comando para listar todos los documentos de la coleccion usuarios
+db.usuarios.find( {} )
+
+//historia de usuario 5 
+//comando para actualizar el estado del usuario en la coleccion usuarios 
+db.usuarios.updateOne(
+   {_id:ObjectId("6196826abc61701fafff8289") },
+   {
+     $set: { "estadoUsuario": "Aceptado" },
+  
+   }
+)
+
+//historia de usuario 6 y 19
+//comando para listar todos los documentos de la coleccion proyectos
+db.proyectos.find( {} )
+
+//historias de usuario 7,8 
+//comando para actualizar el estado del proyecto en la coleccion proyectos
+db.proyectos.updateOne(
+   { _id:ObjectId("6199a429528372cd9bb62071")  },
+   {
+     $set: { "estadoProyecto": "Activo" },
+  
+   }
+)
+//historia de usuario 9
+//comando para actualizar la fase del proyecto en la coleccion proyectos
+db.proyectos.updateOne(
+   { _id:ObjectId("6199a429528372cd9bb62071")  },
+   {
+     $set: { "faseProyecto": ["Terminado"] },
+  
+   }
+)
+
+//historia de usuario 10
+//comando para listar todos los documentos de la coleccion usuarios que son estudiantes
+db.usuarios.find( {"Rol":"Estudiante"} )
+
+//historia de usuario 11
+db.usuarios.find({$and: [{"Rol.0":"Estudiante"},{"estadoUsuario":"Pendiente"}]})
+db.usuarios.find({$or: [{"Rol.0":"Estudiante"},{"estadoUsuario":"Pendiente"}]})
+db.usuarios.updateOne(
+   { _id:ObjectId("6195ca7d8f74a29a3ae0403a")  },
+   {
+     $set: { "estadoUsuario": "Autorizado" },
+  
+   }
+)
+
+//historia de usuario 12
+//insercion de un documento en la coleccion proyectos
+db.proyectos.insertOne({ "nombre": 'plasticos medioambientales',
+			   "objetivosGenerales":['reducir la contaminacion','ayudar al medio'],
+			   "objetivosEspecificos":['crear productos biodegradables','generar cultura medioambiental'],
+			   "presupuesto":543545,
+		           "fechaInicio":"10/22/2021",
+			   "fechaFinal":"12/22/2021",
+			   "informacionLider":{
+					"id":ObjectId("6195caa08f74a29a3ae0403b"),
+					"Nombre":"Myriam Johana Varon Romero"
+				},
+			   "EstadoProyecto":['Inactivo'],
+			   "faseDelDProyecto":['Desarrollo']
+
+})
+//historia de usuario 13
+//comando para encontrar los proyectos activos o inactivos creados por un determinado lider 
+db.proyectos.find({"informacionLider.Nombre": "Carlos Zuñiga" })
+
+
+//historia de usuario 14
+//comando para actualizar la coleccion proyectos qu esten activos
+db.proyectos.updateOne({"estadoProyecto.0":"Activo","informacionLider.Nombre": "Carlos Zuñiga"},{$set:{"nombre":"luisa","objetivosGenerales":["dgjdngjndkjf"],"objetivosEspecificos":["sdsdcsd"],"presupuesto":2324234}})
+
+//historia de usuario 15
+//comando para listar todos los documentos de la coleccion usuarios que son estudiantes
+db.gestionInscripcion.find( {"_idProyecto" : ObjectId("6195cb148f74a29a3ae0403c")} )
+
+//historia de usuario 16
+//comando para actualizar la coleccion  gestion de inscripcion
+db.gestionInscripcion.updateOne(
+   { _id:ObjectId("61999e54528372cd9bb6206f") },
+   {
+     $set: { "estadoInscripcion": "Aceptado"},
+  
+   }
+)
+
+//historia de usuario 17
+db.proyectos.aggregate([{$match:{_id:ObjectId("6195cb148f74a29a3ae0403c")}},{$lookup:{from:"gestionAvances",localField:"_id",foreignField:"_idProyecto",as:"gestion de avances"}},{$unwind: "$gestion de avances"}]).pretty()
+
+//historia de usuario 18
+//comando para actualizar la coleccion gestion de avances
+db.gestionAvances.updateOne(
+   { _id:ObjectId("61999f72528372cd9bb62070") },
+   {
+     $set: { "descripcionAvance": "wedwedwed"},
+  
+   }
+)
+
+
+
+//historia de usaurio 20
+//insercion de un documento en la coleccion gestion de inscripciones
+db.gestionInscripcion.insertOne({"_idProyecto":ObjectId("6199a429528372cd9bb62071"),
+		 "nombre": "plasticos medioambientales",
+		 "_idEstudiante": ObjectId("6195ca7d8f74a29a3ae0403a"),
+		 "nombreEstudiante":"Cristhian David Dorado Riveros",
+		 "estadoInscripcion":["Rechazada"] ,
+		 "fechaIngreso":"13/11/2019",
+		 "fechaFinal":"15/02/2026"	
+		})
+
+
+//insercion de un documento en la coleccion gestion de avances
+db.gestionAvances.insertOne({ "_idProyecto": ObjectId("6195cb148f74a29a3ae0403c"),
+		 "nombre":"Bolsa Degradable",
+		 "fechaAvance":"04/11/2020",
+		 "descripcionAvance":"pruebas"
+		})
+//historias de usuarios 21
+db.gestionInscripcion.aggregate([{$match:{"estadoInscripcion.0":"Aceptada","nombreEstudiante":"Myriam Johana Varon Rodriguez"}},{$lookup:{from:"gestionAvances",localField:"_idProyecto",foreignField:"_idProyecto",as:"gestion de avances"}},{$project:{_id:0,"estadoInscripcion":1,"nombreEstudiante":1,"descripcionAvance":"$gestion de avances.descripcionAvance"}}]).pretty()
+
+7/historias de suarios 22
+
+activo
+inscripto.
+
+db.proyectos.aggregate([{$match:
+   {"estadoDelProyecto.0":'Activo',"_id": ObjectId("6196a7e6bc61701fafff829c")}},
+   {$lookup:{from:"gestionAvances",localField:"_id",foreignField:"_idProyecto",as:"gestion de avances"}
+
+   },
+   {
+     $set: {"gestion de avances.descripcionAvance":"fsfsdfsdf"}
+   }
+]
+)
+
+
+
+//historia de usuario 23
+db.gestionAvances.updateOne(
+   { _id:ObjectId("61999f72528372cd9bb62070") },
+   {
+     $set: { "descripcionAvance": ["fdfddfdfrfe","w3rwererer"]},
+  
+   }
+)
+//comando para borrar todos los elementos de una coleccion usuarios
+db.usuarios.deleteMany({})
+
+//comando para borrar todos los elementos de una coleccion proyectos
+db.proyectos.deleteMany({})
+
+//comando para borrar todos los documentos de la coleccion usuarios segun el id
+db.usuarios.deleteMany({ _id : "5345432" })
+
+
+//comando para borrar todos los documentos de la coleccion proyectos segun el id
+db.proyectos.deleteMany({ _id : "fvsdfwer34" })
+
+
+//comando para borrar un  documento de la coleccion usuario segun el id
+db.usuarios.deleteOne({ _id : "5345432" })
+
+//comando para borrar un  documento de la coleccion proyectos segun el id
+db.proyectos.deleteOne({ _id : "fvsdfwer34" })
+
+
+//insercion de un documento en la coleccion rol
+db.rol.insertOne({ "1":"Estudiante", "2":"Lider","3":"Administrador"})
+
+//insercion de un documento en la coleccion estado de usuario
+db.estadoUsuario.insertOne({ "1":"Pendiente", "2":"Autorizado","3":"No autorizado"})
+
+//insercion de un documento en la coleccion fase del proyecto
+db.faseProyecto.insertOne({ "1":"Inciado", "2":"Desarrollo","3":"Terminado","4":"Null"})
+
+//insercion de un documento en la coleccion estado del proyecto
+db.estadoProyecto.insertOne({ "1":"Activo", "2":"Inactivo"})
+
+//comando para listar  documentos de la coleccion usuarios po id
+db.usuarios.find( {_id:ObjectId('6196826abc61701fafff8289')} )
+
+//comando para listar todos los documentos de la coleccion proyectos
+db.proyectos.find( {_id:ObjectId('61968f21bc61701fafff8299') } )
+
+//insercion de un documento en la coleccion estado de inscripcion
+db.estadoInscripcion.insertOne({ "1":"Aceptado", "2":"Rechazado"})
+
+db.usuarios.update(
+
+   {_id:ObjectId("6195ca7d8f74a29a3ae0403a")},
+   {
+     $set: { "estadoUsuario": "Pendiente" },
+  
+   }
+)
+
+
+
