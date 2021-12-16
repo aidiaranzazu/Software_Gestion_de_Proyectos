@@ -4,12 +4,12 @@ import { resolvers } from "./resolvers.js";
 const typeDefs = ` 
     type Query {
         Hola(nombre : String!) : String
-        Proyectos : [Proyecto]
+        Proyectos(documento:Int!): [Proyecto]
         ProyectoLider(docLider: String!):[Proyecto]
         ProyectoByLideryEstado( docLider : String!, estadoProyecto : Boolean ) : [Proyecto] 
         ProyectoID(id:String!): Proyecto
 
-        Usuarios : [Usuario]
+        Usuarios(documento:Int!):[Usuario]
         UsuarioEstudiante(rol : String!) : [Usuario]
         UsuarioEstudianteById(id : String!) : [Usuario]
         UsuarioEstado(estadoUsuario:String!) : [Usuario]
@@ -17,8 +17,8 @@ const typeDefs = `
         GestionInscripciones : [GestionInscripcion]
         GestionInscripcionByEst(idEstudiante : String!) : [GestionInscripcion]
         GestionInscripcionByEstadoIns(estadoInscripcion : String!) : [GestionInscripcion]
-        GestionAvances : [GestionAvance]
-        GestionAvanceByidPro(idProyecto : String!) : [GestionAvance] 
+        GestionAvancesLider(documentoEstudiante: Int!) : [GestionAvance]
+        GestionAvanceByidPro(documentoEstudiante: Int!) : [GestionAvance] 
         Login( correo : String!, password : String!) : String   
     }
     
@@ -30,12 +30,12 @@ const typeDefs = `
        
         ActualizarUsuario( usuario : ActualizarUsuarioInput ): Usuario 
         ActualizarUsuarioEstado( usuario : ActualizarEstadoUsuarioInput ): Usuario 
-        ActualizarProyecto( proyecto : ProyectoInput ): Proyecto
+        ActualizarProyecto( proyecto : ProyectoActualizarInput ): Proyecto
         ActualizarProyectoFase( proyecto : ProyectoInputfase ): Proyecto
         ActualizarEstadoProyecto(proyecto: ActualizarEstadoProyectoInput):Proyecto  
         ActualizarEstadoInscripcion(gestioninscripcion: ActualizarEstadoInscripcionInput):GestionInscripcion
-        ActualizarDescripcionAvance(gestionAvances: ActualizarDescripcionAvanceInput):GestionAvance
-
+        ActualizarAvanceUsuario(gestionAvances:ActualizarAvanceInput ):GestionAvance
+        ActualizarAvanceLider(gestionAvances: ActualizarAvanceObserInput ):GestionAvance
     }
 
      type Proyecto {
@@ -44,8 +44,6 @@ const typeDefs = `
          objetivosGenerales: String,
          objetivosEspecificos: [Objetivo],
          presupuesto: Int,
-         fechaInicio: String,
-         fechaFinal: String,
          docLider: Int,
          nombreLider: String,
          estadoProyecto: Boolean,
@@ -61,22 +59,34 @@ const typeDefs = `
         objetivosGenerales: String!,
         objetivosEspecificos: [ObjetivoInput]!,
         presupuesto: Int!,
-        fechaInicio: String,
-        fechaFinal: String,
         docLider: Int ,
         nombreLider: String,
         estadoProyecto: Boolean,
-        faseProyecto: String
+        faseProyecto: String,
+                
     }
+    input ProyectoActualizarInput {
+       id: ID!,
+       docLider: Int!, 
+       nombre: String,
+       objetivosGenerales: String!,
+       objetivosEspecificos: [ObjetivoInput]!,
+       presupuesto: Int!,
+         }
     input ProyectoInputfase {
        id: ID!
+       docLider: Int!,
        faseProyecto: String!
+      
+
    }
 
    input ActualizarEstadoProyectoInput{
     id:ID!,
-    estadoProyecto:Boolean!
-}
+    docLider: Int!,
+    faseProyecto: String!,
+    estadoProyecto: Boolean
+    }
 
 
     input ObjetivoInput {
@@ -111,42 +121,43 @@ const typeDefs = `
     }
     input ActualizarEstadoUsuarioInput {
         id : ID!
+        documento: Int! 
         estadoUsuario: String!        
     }
     
     type GestionInscripcion {
         id: ID,
-        idProyecto: ID,
+        idProyecto: String,
         nombre: String,
-        idEstudiante: ID,
+        idEstudiante: String,
         nombreEstudiante: String,
-        estadoInscripcion: String,
-        fechaEgreso: String,
-        fechaFinal: String
+        estadoInscripcion: String, 
+        documentoEstudiante: Int       
     }
 
     input GestionInscripcionInput {
-        id: ID!
+        id: ID!,
         idProyecto: ID,
         nombre: String,
         idEstudiante: ID,
+        documentoEstudiante: Int!,
         nombreEstudiante: String,
         estadoInscripcion: String,
-        fechaEgreso: String,
-        fechaFinal: String    
     }
     input ActualizarEstadoInscripcionInput{
-        id:ID!,
+       
+        id: ID!,
+        idProyecto: ID!,
         estadoInscripcion:String!
     }
     type GestionAvance {
         id: ID,
         idProyecto: String!,
         nombre: String,
-        fechaAvance: String,
         descripcionAvance : String,
         observaciones: [Observacion],
-        idUsuario: String!
+        idUsuario: String!,
+        documentoEstudiante: Int
     }
     type Observacion{
         observacion: String
@@ -156,18 +167,26 @@ const typeDefs = `
         id : ID!
         idProyecto: String!,
         nombre: String!,
-        fechaAvance: String!,
         descripcionAvance : String!,
         observaciones: [ObservacionInput]!, 
-        idUsuario: String!
+        idUsuario: String!,
+        documentoEstudiante: Int!
     }
     input ObservacionInput{
         observacion: String
     }
 
-    input ActualizarDescripcionAvanceInput{
-        id:ID!,
-        descripcionAvance:String!
+    input ActualizarAvanceInput{
+        id:ID!,   
+        nombre: String!,     
+        descripcionAvance:String!,
+        observaciones: [ObservacionInput]!,
+        documentoEstudiante: Int!
+    }
+    input ActualizarAvanceObserInput{
+        id:ID!,   
+        observaciones: [ObservacionInput]!,
+        documentoEstudiante: Int!
     }
 
 `; 

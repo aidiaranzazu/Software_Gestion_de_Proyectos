@@ -3,11 +3,12 @@ import { graphqlHTTP } from "express-graphql";
 import schx from "./graphql/schema.js";
 import dbConnection from "./database/config.js";
 import validarJwt from "./middleware/validar-jwt.js";
+import cors from "cors";
 const app = express();
 
 
 dbConnection()
-
+app.use(cors())
 app.use(validarJwt)
 
 app.use("/graphql", graphqlHTTP((req)=>({

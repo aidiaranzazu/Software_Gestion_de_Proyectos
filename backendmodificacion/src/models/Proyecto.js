@@ -8,11 +8,11 @@ const ProyectoSchema= Schema({
         objetivo:String
     }],
     presupuesto : {type: Number,required:true},
-    fechaInicio : {type:String,required:true},
-    fechaFinal : {type:String,required:true},
+    fechaInicio : {type:Date, default : null},
+    fechaFinal : {type:Date, default:null},
     docLider: {type:Number,required:true},
     nombreLider: {type:String, required:true},
-    estadoProyecto:{type:Boolean,required:true},
+    estadoProyecto:{type:Boolean,default: "Inactivo"},
     faseProyecto:{type:String,required:true}
 
 })

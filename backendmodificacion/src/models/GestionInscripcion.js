@@ -6,8 +6,10 @@ const GestionInscripcionSchema= Schema({
     nombre: {type:String,required:true},
     idEstudiante: {type:String,required:true},
     nombreEstudiante:{type:String,required:true},
+    documentoEstudiante:{type:Number,required:true},
     estadoInscripcion:{type:String,required:true},
-    fechaEgreso:{type:String,required:true},
-    fechaFinal:{type:String,required:true}
+    fechaIngreso:{type:Date,default: null},
+    fechaFinal:{type:Date,default:null}
+
 })
 export default model("GestionInscripcion",GestionInscripcionSchema);
