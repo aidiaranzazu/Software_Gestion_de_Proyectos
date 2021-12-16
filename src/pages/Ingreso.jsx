@@ -12,7 +12,7 @@ const Ingreso = () =>{
       <div className="conten">
       <section className="login_Developer">
    
-      <h1>Iniciar Sesion</h1>      
+      <h1>Iniciar Sesión</h1>      
       <form>
       <label for="nombre_usuario">Nombre de usuario</label>
       <input type="text" placeholder="Ingrese Nombre de Usuario"></input>
@@ -23,10 +23,11 @@ const Ingreso = () =>{
       <button  onClick={() => loginWithRedirect()} id="ingresar">Ingresar</button> 
       <span> -------  o  ------- </span>
       <button type="Google">Ingresar con Google</button> 
+      
       </div>
      
       <div class="foot-lnk">
-        <a href="#forgot">Registrarse</a>
+        <a href="/src/pages/Gestion_usuario.jsx">Registrarse</a>
         </div>
       
 

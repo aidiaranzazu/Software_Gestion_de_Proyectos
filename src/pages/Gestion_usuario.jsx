@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import "../Estilos/usuarios.css"
+import "../Estilos/estilos2.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -19,58 +20,45 @@ const Gestion_usuario = () => {
     };
 
     return(
-            <div className="contenedor">
-                 <h3>Gestión de usuarios</h3>
+        <div className="App">
+        <div className="conten">
+        <section className="login_Developer">
+                 <h3>Registro</h3>
                   <hr/>
                   <form> 
-                    <input id="fecha" type="date" onChange={(e) => {setFecha(e.target.value);}}/> {/*Captura el cambio en el estado y lo guarda en la veriable setFecha*/} 
-                    <div className="opciones">
-                    <select className="seleccionar" required defaultValue={0}>
-                        <option disabled value={0}>
-                        Usuario
-                        </option>
-                        <option>Usuario1</option>
-                        <option>Usuario2</option>
-                        <option>Usuario3</option>
-                    </select>
-
-                    <input className="seleccionar" name= "id" placeholder="Identificación"/> 
+                  
+                    
+                    <div className='opciones'>
+                    <input type="text" name= "id" placeholder="Nombre completo"/>
+                    <input type="text" name= "id" placeholder="Identificacion"/> 
                     
                     </div>
                     
-                    <div className="opciones2">
+                    <div >
                          
-                        <input namet= "estado" placeholder="Estado Actual"/> 
-                        <input type="codigo" placeholder="Código"/>                         
+                    <input type="text" name= "id" placeholder="Correo"/>
+                    <input type="text" name= "id" placeholder="Contraseña"/>                      
                         <select required defaultValue={0} onChange={(e) => {setRol(e.target.value);}} >
-                        <option disabled value={0}>
+                        <option classname="opt" disabled value={0}>
                             Rol de usuario
                         </option>
                         <option>Administrador</option>
-                        <option>Vendedor</option>                  
+                        <option>Lider</option>    
+                        <option>Estudiante</option>               
                     </select>
                     </div>
                     <hr/>
 
-                    
-                    <div className="selec">
-                        <label htmlFort="Estado">Cambiar estado de usuario</label>
-                        <select required defaultValue={0} onChange={(e) => {setEstado(e.target.value);}}> 
-                        <option disabled value={0}>Estado</option>
-                        <option>Pendiente</option>
-                        <option>Autorizado</option>
-                        <option>No Autorizado</option>
-                        </select> 
-                    </div>
-
-                    <div className="botones1">
-                        <button type="button" onClick = {enviarAlBackend}>Guardar Datos</button> {/* ejecuta funcion enviaAlBakend al dar clic en botón*/}
-                        <button type ="reset"> Limpiar Campos </button>
+                
+                    <div className="botonesregis">
+                        <button type="button" onClick = {enviarAlBackend}>Registrarse</button> {/* ejecuta funcion enviaAlBakend al dar clic en botón*/}
+                        <button type ="reset"> Limpiar  </button>
                         <ToastContainer position="top-right" autoClose={4000}/>
                     </div>
             </form>
-                
+                </section>
             </div>  
+            </div>
     )
 
 };

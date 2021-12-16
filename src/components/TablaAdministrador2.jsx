@@ -198,20 +198,15 @@ const enviarAlBackend = async () =>{
         <table className="table table-hover">
             <thead>
                     <tr className="table-dark">
-                        <th>
-                            Buscar Usuario
-                        </th>
-                        <th>
-                            Buscar Id
-                        </th>
-                        <th>
-                            Unuario #
-                        </th>
+                        <th>Nombre </th>
+                        <th>Objetivos finales </th>
+                        <th>Objetivos específicos</th>
+                        
                     </tr>
                 </thead>
             <tbody>
                     <tr className="table-secondary">
-                        <th>
+                        <th> 
                             <select className="form-select" name="productos" value={nombre} onChange={(e)=> setProducto(e.target.value)} required>
                             <option value="" disabled>Productos</option>
                             {listaProducto.map((nombre) => {

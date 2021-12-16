@@ -17,8 +17,7 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: nowrap;
-    margin: 2%;
-    margin-top: 5%;
+
 }
 
 .contenedor input{
@@ -31,10 +30,13 @@
 
 h3{
     text-align: center;
-    color: #57ee32;
+    
     margin-bottom: 0;
 }
 
+.opt{
+    margin-left: 20px;
+}
 .opciones2{
     display: flex;
     padding: 1%;
@@ -43,7 +45,7 @@ h3{
 }
 
 .opciones2 input{
-    border-radius: 6px;
+
     height: 4vh;
     width: 12vw;
     margin-bottom: 3%;
@@ -53,14 +55,14 @@ h3{
 .opciones2 select,
 .selec select
 {
-    border-radius: 6px;
+    
     height: 5vh;
     width: 12vw;
     }
 
 .opciones input
 {
-    border-radius: 6px;
+    
     height: 4vh;
     width: 12vw;
 }
@@ -70,9 +72,9 @@ h3{
     display: flex;
     justify-content: space-between;
     margin-top: 5%;
-    flex-direction: column;
+    
     align-items: center;
-
+    border-radius: 20px;
 }
 
 
@@ -93,10 +95,10 @@ h3{
 button{
     height: 30px;
     width: 130px;
-    border-radius: 10px;
     cursor: pointer;
     color: #050505;
-    background-color: #57ee32;
+    background: #05ffff ;
+    border-radius: 20px;
     font-weight: bold;   
     border: outset 1px #ccc;
     
