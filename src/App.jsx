@@ -7,6 +7,7 @@ import Gestion_avances from './pages/Gestion_avances.jsx';
 import Gestion_inscripciones from './pages/Gestion_inscripciones.jsx';
 import Gestion_usuario from './pages/Gestion_usuario.jsx';
 import Gestion_proyectos from './pages/Gestion_proyectos.jsx';
+import Editar_perfil from './pages/Editar_perfil.jsx';
 import Ingreso from './pages/Ingreso.jsx';
 import ListarProyect from './pages/ListarProyect.jsx';
 import ListarIns from './pages/ListarIns.jsx';
@@ -46,6 +47,9 @@ function App() {
           <Route path="/src/pages/Gestion_proyectos.jsx">
           <Gestion_proyectos/>
           </Route> 
+          <Route path="/src/pages/Editar_perfil.jsx">
+          <Editar_perfil/>
+          </Route>
          
           <Route path="/src/pages/ListarProyect.jsx">
           <ListarProyect/>
