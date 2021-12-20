@@ -1,4 +1,4 @@
-import Header from "../components/header.jsx"
+import Header from "../components/container/header.jsx"
 import Footer from '../components/Footer.jsx';
 
 const Layout=({children}) =>{
