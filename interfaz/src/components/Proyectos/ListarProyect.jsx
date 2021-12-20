@@ -3,25 +3,25 @@ import "../../Estilos/producto.css";
 import React from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import GET_PROYECTOS from "../../Apollo/gql/getProyectos";
-import {useQuery} from "@apollo/client"
+import { useQuery } from "@apollo/client"
 import { NavLink } from "react-router-dom";
 
- const ListarProyectos = () => {
-  
-  const {loading,data,error} = useQuery(GET_PROYECTOS);
-  
-    const handleDelete = (id)  =>{
-        console.log('Delete')
-    } 
-    
-  return( 
+const ListarProyectos = () => {
+
+  const { loading, data, error } = useQuery(GET_PROYECTOS);
+
+  const handleDelete = (id) => {
+    console.log('Delete')
+  }
+
+  return (
     <>
-      {loading && <p>Cargando.....</p>}   
-          {error && <p>Se ha producido un error</p>}
-          {
-           data &&    
-           <table className="table login_Developer3 lo">
-          
+      {loading && <p>Cargando.....</p>}
+      {error && <p>Se ha producido un error</p>}
+      {
+        data &&
+        <table className="table login_Developer3 lo">
+
           <thead>
             <tr>
               <th> # </th>
@@ -36,41 +36,57 @@ import { NavLink } from "react-router-dom";
               <th>Estado del proyecto</th>
               <th>Fase del proyecto</th>
             </tr>
-          </thead>         
+          </thead>
 
           <tbody>
-                 {
-                         data.Proyectos.map((proyecto,index ) => (
-                          <tr key={proyecto.id}>
-                          <td scope = "row">{ index + 1}</td>
-                                <td>{proyecto.nombre}</td>
-                                <td>{proyecto.objetivosGenerales}</td>
-                                <td>{proyecto.objetivosEspecificos.map((objetivo, index ) =>{
-                                   <td>{objetivo[index + 1]}</td>
-                                })}</td>
-                                <td>{proyecto.presupuesto}</td>
-                                <td>{proyecto.fechaInicio}</td>
-                                <td>{proyecto.fechaFinal}</td>
-                                <td>{proyecto.docLider}</td>
-                                <td>{proyecto.nombreLider}</td>
-                                <td>{proyecto.estadoProyecto}</td>
-                                <td>{proyecto.faseProyecto}</td>                               
+            {
+              data.Proyectos.map((proyecto, index) => (
+                <tr key={proyecto.id}>
+                  <td scope="row">{index + 1}</td>
+                  <td>{proyecto.nombre}</td>
+                  <td>{proyecto.objetivosGenerales}</td>
+                  <td>
+                    <ul>
+                      {/* {proyecto.objetivosEspecificos.map((obj,index) => {
+                        <li key={index}>
+                          {console.log(obj.objetivo)}
+                          {obj.objetivo}
+                        </li>
+                      })} */}
+                      <li>
+                        Uno
+                      </li>
+                      <li>
+                        Uno
+                      </li>
+                      <li>
+                        Uno
+                      </li>
+                    </ul>
+                  </td>
+                  <td>{proyecto.presupuesto}</td>
+                  <td>{proyecto.fechaInicio}</td>
+                  <td>{proyecto.fechaFinal}</td>
+                  <td>{proyecto.docLider}</td>
+                  <td>{proyecto.nombreLider}</td>
+                  <td>{proyecto.estadoProyecto}</td>
+                  <td>{proyecto.faseProyecto}</td>
 
-                                <td>
-                                  
-                                  <NavLink color="primary" to ={`/productos/${proyecto.id}` } >
-                                        Editar
-                                  </NavLink>{" "}
-                                  <button type = "button"color="danger" onClick={() => handleDelete(proyecto.id)}>Eliminar</button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-              </table>
-          }
-      </>
+                  <td>
+
+                    <NavLink color="primary" to={`/productos/${proyecto.id}`} >
+                      Editar
+                    </NavLink>{" "}
+                    <button type="button" color="danger" onClick={() => handleDelete(proyecto.id)}>Eliminar</button>
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      }
+    </>
   )
-                        
-  }
-  
-  export default ListarProyectos;
+
+}
+
+export default ListarProyectos;

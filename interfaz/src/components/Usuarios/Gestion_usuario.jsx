@@ -4,20 +4,40 @@ import "../../Estilos/estilos2.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from "react-router-dom";
+import { useForm } from 'react-hook-form';
+import {useMutation} from '@apollo/client'
+import SET_USUARIO from '../../Apollo/gql/setUsuario'
 
 const Gestion_usuario = () => {
-    const [fecha,setFecha] = useState ([]); //estados
-    const [rol,setRol] = useState ([]);
-    const [estado,setEstado] = useState ([]);
+    // const [fecha,setFecha] = useState ([]); //estados
+    // const [rol,setRol] = useState ([]);
+    // const [estado,setEstado] = useState ([]);
     
 
-    const enviarAlBackend =() => {             //Función
-        console.log( 'Fecha: ', fecha);        //imprime en consola
-        console.log( 'Rol asignado: ', rol);
-        console.log( 'Estado: ', estado);
-        toast.success ('Cambios guardados');
-        /*alert(rol);*/
-    };
+    // const enviarAlBackend =() => {             //Función
+    //     console.log( 'Fecha: ', fecha);        //imprime en consola
+    //     console.log( 'Rol asignado: ', rol);
+    //     console.log( 'Estado: ', estado);
+    //     toast.success ('Cambios guardados');
+    //     /*alert(rol);*/
+    // };
+   
+   
+   
+    const {register,handleSubmit} = useForm();
+
+    const[crearUsuario]=useMutation(SET_USUARIO);
+    
+    const handleCreate = (data) =>{    
+        console.log(data)
+         
+        const{nombreCompleto,documento,correo,password,rol} =data   
+
+       crearUsuario({variables:{nombreCompleto,documento:parseInt(documento),correo,password,rol}})
+       
+       
+    }
+   
 
     return(
         <div className="App">
@@ -25,33 +45,32 @@ const Gestion_usuario = () => {
         <section className="login_Developer">
                  <h3>Registro</h3>
                   <hr/>
-                  <form> 
-                  
+                  <form onSubmit={handleSubmit(handleCreate)}>                 
                     
                     <div className='opciones'>
-                    <input type="text" name= "id" placeholder="Nombre completo"/>
-                    <input type="text" name= "id" placeholder="Identificacion"/> 
+                    <input type="text" name= "id" placeholder="Nombre completo"{...register("nombreCompleto",{required:true})}/>
+                    <input type="number" name= "id" id ="docu" placeholder="Identificacion" {...register("documento",{required:true})}  /> 
                     
                     </div>
                     
                     <div >
                          
-                    <input type="text" name= "id" placeholder="Correo"/>
-                    <input type="text" name= "id" placeholder="Contraseña"/>                      
-                        <select required defaultValue={0} onChange={(e) => {setRol(e.target.value);}} >
+                    <input type="text" name= "id" placeholder="Correo" {...register("correo",{required:true, pattern: /^\S+@\S+$/i})}/>
+                    <input type="password" name= "id" placeholder="Contraseña" {...register("password",{required:true})}/>                      
+                        <select {...register("rol",{required:true})} >
                         <option classname="opt" disabled value={0}>
                             Rol de usuario
                         </option>
-                        <option>Administrador</option>
-                        <option>Lider</option>    
-                        <option>Estudiante</option>               
+                        {/* <option>Administrador</option> */}
+                        <option value="1">Lider</option>    
+                        <option value="2">Estudiante</option>               
                     </select>
                     </div>
                     <hr/>
 
                 
                     <div className="botonesregis">
-                        <button type="button" onClick = {enviarAlBackend}>Registrarse</button> {/* ejecuta funcion enviaAlBakend al dar clic en botón*/}
+                        <button type="submit">Registrarse</button> {/* ejecuta funcion enviaAlBakend al dar clic en botón*/}
                         <button type ="reset"> Limpiar  </button>
                         <button type="button" id="ingresar"><Link to="/ListarUsuarios">Listar Usuarios</Link></button> 
                         <ToastContainer position="top-right" autoClose={4000}/>
