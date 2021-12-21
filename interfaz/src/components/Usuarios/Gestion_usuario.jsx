@@ -3,26 +3,14 @@ import "../../Estilos/usuarios.css"
 import "../../Estilos/estilos2.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import {useMutation} from '@apollo/client'
 import SET_USUARIO from '../../Apollo/gql/setUsuario'
 
 const Gestion_usuario = () => {
-    // const [fecha,setFecha] = useState ([]); //estados
-    // const [rol,setRol] = useState ([]);
-    // const [estado,setEstado] = useState ([]);
-    
-
-    // const enviarAlBackend =() => {             //Función
-    //     console.log( 'Fecha: ', fecha);        //imprime en consola
-    //     console.log( 'Rol asignado: ', rol);
-    //     console.log( 'Estado: ', estado);
-    //     toast.success ('Cambios guardados');
-    //     /*alert(rol);*/
-    // };
-   
-   
+     
+   const {action} = useParams();
    
     const {register,handleSubmit} = useForm();
 
@@ -75,10 +63,10 @@ const Gestion_usuario = () => {
                         <button type="button" id="ingresar"><Link to="/ListarUsuarios">Listar Usuarios</Link></button> 
                         <ToastContainer position="top-right" autoClose={4000}/>
                     </div>
-            </form>
+                 </form>
                 </section>
             </div>  
-            </div>
+          </div>
     )
 
 };

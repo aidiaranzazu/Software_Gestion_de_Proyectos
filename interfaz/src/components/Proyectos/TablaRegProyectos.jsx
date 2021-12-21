@@ -2,19 +2,23 @@ import React from "react";
 import "../../Estilos/tablaadmin.css"
 import { Link } from "react-router-dom";
 import {ApolloClient, HttpLink,InMemoryCache,gql} from '@apollo/client';
+import SET_PROYECTO from "../../Apollo/gql/setProyecto";
+import { useForm } from "react-hook-form";
+import { useMutation } from "@apollo/client";
 
-const data = [
-    { id: 1, nombre: "Proyecto 1", objgeneral: "lograr eficiencia", objespecifico:"dddddddd", 
-    presupuesto:"200.000", fechainicial:"12/02/2021", fechafinal:"30/09/2021", documento:"22222",
-nombrelider:"Ana Mileth" },
-    { id: 2, nombre: "Proyecto 1", objgeneral: "ganar publico" },
+
+// const data = [
+//     { id: 1, nombre: "Proyecto 1", objgeneral: "lograr eficiencia", objespecifico:"dddddddd", 
+//     presupuesto:"200.000", fechainicial:"12/02/2021", fechafinal:"30/09/2021", documento:"22222",
+// nombrelider:"Ana Mileth" },
+//     { id: 2, nombre: "Proyecto 1", objgeneral: "ganar publico" },
     
-  ];
+//   ];
  
  
   
 
-const Tabla_proyectos =() =>{
+const Tabla_proyectos = () =>{
   
 //   const  state = {
 //         data: data,
@@ -52,74 +56,97 @@ const Tabla_proyectos =() =>{
 //           },
 //         });
 //       };
-    
+        const {register,handleSubmit} = useForm();
+
+        const[crearProyecto]=useMutation(SET_PROYECTO);
+
+        const handleCreate = (data) =>{    
+            console.log(data)
+            
+            const{nombre,objetivosGenerales,objetivosEspecificos,presupuesto,docLider,nombreLider,} =data   
+
+        crearProyecto({variables:{nombre,objetivosGenerales,objetivosEspecificos,presupuesto:parseInt(presupuesto),docLider:parseInt(docLider),nombreLider}})
+        
+        }
       
     return(
         
 
       <div className="con">
+         <div className="conten">
            <section className="login_Developer1">
-          <h1>Registrar proyecto</h1>   
-        <div className="campos1 ">
-            <label >Nombre </label>
-            <input
+             <h1>Registrar proyecto</h1> 
+              <form onSubmit={handleSubmit(handleCreate)}>   
+                <div className="campos1 ">
+                <label >Nombre </label>
+                <input
                     className="form-control"
                     name="nombre"
                     type="text"
-                    // onChange={this.handleChange} 
+                    placeholder="nombre"
+                    {...register("nombre",{required:true})}
                     />  
 
-            <label >Objetivos generales </label>
-            <input
+                 <label >Objetivos generales </label>
+                <input
                     className="form-control"
                     name="objgenerales"
                     type="text"
-                    // onChange={this.handleChange}
-                     />  
+                    placeholder="Objetivos Generales"
+                    {...register("objetivosGenerales",{required:true})}
+                />  
 
-            <label >Objetivos especificos </label>
-            <input className="form-control"
+                <label >Objetivos especificos </label>
+                <input className="form-control"
                     name="objespecifico"
                     type="text"
-                    // onChange={this.handleChange} 
-                    /> 
+                    placeholder="Objetivos Especificos"
+                    {...register("objetivosEspecificos",{required:true})}
+                
+                /> 
 
-            <label >Presupuesto </label>
-            <input className="form-control"
+                <label >Presupuesto </label>
+                <input className="form-control"
                     name="presupuesto"
-                    type="text"
-                    // onChange={this.handleChange} 
-                    /> 
-
-            <label >Fecha inicial</label>
+                    type="number"
+                    placeholder="presupuesto"
+                    {...register("presupuesto",{required:true})}
+                    
+                /> 
+                </div>
+{/* 
+            {/* <label >Fecha inicial</label>
             <input className="form-control"
                     name="fechainicial"
                     type="text"
                     // onChange={this.handleChange}
-                     /> 
-        </div>
+                     />  */} 
+        
 
       
         <div className="campos2 ">   
-            <label >Fecha final</label>
+            {/* <label >Fecha final</label>
             <input className="form-control"
                     name="fechafinal"
                     type="text"
                     // onChange={this.handleChange} 
-                    /> 
+                    />  */}
             <label >Documento</label>
             <input className="form-control"
                     name="documento"
-                    type="text"
-                    // onChange={this.handleChange}
+                    type="number"
+                    placeholder="documento del lider"
+                    {...register("docLider",{required:true})}
                      /> 
             <label >Nombre del lider</label>
             <input className="form-control"
                     name="nombrelider"
                     type="text"
-                    // onChange={this.handleChange}
+                    placeholder="nombre del lider"
+                    {...register("nombreLider",{required:true})}
+                    
                      /> 
-            <label >Estado del proyecto</label>
+            {/* <label >Estado del proyecto</label>
             <select className="lista">
                 <option classname="opt" disabled value={0}>
                     Estado del proyecto
@@ -127,34 +154,29 @@ const Tabla_proyectos =() =>{
                     <option>Autorizado</option>
                     <option>No autorizado</option> 
                     <option>Pendiente</option>                
-            </select>
-            <label >Fase del proyecto</label>
+            </select> */}
+            {/* <label >Fase del proyecto</label>
             <select className="lista">
                 <option classname="opt" disabled value={0}>
                    Fase del proyecto
                 </option>
                     <option>Activo</option>
                     <option>Inactivo</option>               
-            </select>
+            </select> */}
            
            
         </div>
         <div className="boton1">
-        <button className="buttoninsc"
-                        onClick={() => this.insertar()}
-                    >
-                        Insertar Proyecto
-                    </button>
-          
-           </div>
-           <div className="boton">
+        <button type="submit" className="buttoninsc">Insertar Proyecto</button>
+        </div>
+        <div className="boton">
         <button type="button" id="ingresar"><Link to="/ListarProyect">Listar proyectos</Link></button> 
         </div>
-
-        
+        </form>
       </section>    
-</div>
-    );
+     </div>
+   </div>
+    )
   }
 
 export default Tabla_proyectos

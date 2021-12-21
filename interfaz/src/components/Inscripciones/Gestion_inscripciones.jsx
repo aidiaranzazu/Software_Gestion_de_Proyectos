@@ -1,7 +1,7 @@
 import React, {useEffect, useState, }  from "react";
 import "../../Estilos/producto.css"
-import TablaInscripciones from "../../components/TablaAvances";
-import TablaAvances from "../../components/TablaAvances";
+import TablaInscripciones from "./TablaInscripciones";
+import TablaAvances from "../Avances/TablaAvances";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
@@ -10,22 +10,7 @@ import axios from "axios";
 
 
 const Gestion_estudiante = () =>{
-      const [productos, setMostrarProductos] = useState([]);
-      useEffect(() => {
-            const options = { method: 'GET', url: 'http://localhost:3001/api/product' };
-
-            axios.request(options).then(function (response) {
-                  console.log(response.data);
-                  setMostrarProductos(response.data.productos)
-
-            }).catch(function (error) {
-                  console.error(error);
-            });
-      }, [setMostrarProductos]);
-
-      
-
-      return(
+     return(
       < >
        
             <TablaInscripciones  />

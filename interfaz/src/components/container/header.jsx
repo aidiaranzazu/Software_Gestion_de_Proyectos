@@ -38,7 +38,7 @@ const Header = () => {
                    </NavLink> </li>
                 <li><Link to="/GestionProyectos"> Gestion proyectos </Link></li>
                 <li><Link to="/GestionAvances"> Gestión Avances </Link></li>
-                <li><Link to="/GestionInscripciones"> Gestión Inscripciones </Link></li>
+                <li><Link to="/listarInscripciones"> Gestión Inscripciones </Link></li>
 
                 <br />
               </ul>
