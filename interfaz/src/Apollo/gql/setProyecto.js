@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 const SET_PROYECTO = gql `  
-    mutation setProyecto( $nombre:String!,$objetivosGenerales:String!,$objetivosEspecificos:[ ObjetivoInput ]!,$presupuesto:Int!,$docLider:Int!,$nombreLider:String! ){
+    mutation setProyecto( $nombre:String!,$objetivosGenerales:String!,$objetivosEspecificos:[ObjetivoInput]!,$presupuesto:Int!,$docLider:Int!,$nombreLider:String! ){
         AgregarProyecto(proyecto :{
             nombre:$nombre,
             objetivosGenerales: $objetivosGenerales,            

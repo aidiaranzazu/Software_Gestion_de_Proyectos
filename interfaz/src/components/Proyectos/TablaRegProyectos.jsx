@@ -97,7 +97,7 @@ const Tabla_proyectos = () =>{
                 />  
 
                 <label >Objetivos especificos </label>
-                <input className="form-control"
+                <textarea className="form-control"
                     name="objespecifico"
                     type="text"
                     placeholder="Objetivos Especificos"

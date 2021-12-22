@@ -45,14 +45,14 @@ const ListarProyectos = () => {
                   <td scope="row">{index + 1}</td>
                   <td>{proyecto.nombre}</td>
                   <td>{proyecto.objetivosGenerales}</td>
-                  <td>
+                  {/* <td>
                     <ul>
-                      {/* {proyecto.objetivosEspecificos.map((obj,index) => {
+                       {proyecto.objetivosEspecificos.map((obj,index) => {
                         <li key={index}>
                           {console.log(obj.objetivo)}
                           {obj.objetivo}
                         </li>
-                      })} */}
+                      })}
                       <li>
                         Uno
                       </li>
@@ -63,7 +63,7 @@ const ListarProyectos = () => {
                         Uno
                       </li>
                     </ul>
-                  </td>
+                  </td>  */}
                   <td>{proyecto.presupuesto}</td>
                   <td>{proyecto.fechaInicio}</td>
                   <td>{proyecto.fechaFinal}</td>
