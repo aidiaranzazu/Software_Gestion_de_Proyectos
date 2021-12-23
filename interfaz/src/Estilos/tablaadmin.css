@@ -1,0 +1,128 @@
+.campos1 {
+    /*display: flex;*/
+  justify-content: space-evenly;
+  padding: 10px;
+  margin: 10px;
+  align-content: center;
+  flex-direction: block;
+  float: left;
+  }
+  
+  .campos2 {
+  align-content: center;
+  justify-content: space-evenly;
+  padding: 10px;
+  margin: 10px;
+  flex-direction: block;
+  float: left;
+  
+  }
+  .login_Developer1 .campos2 .lista{
+    width: 200px;
+    height: 35px;
+    font-size: 15px;
+  }
+ 
+  .login_Developer1 {
+    width: 41%;
+    height: 75%;
+    background: rgba(0, 0, 0, 0.445); 
+    color: #fff;
+    top: 58%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing:border-box;
+    padding: 2% 3%;
+    font-size: 14px;
+    border-radius: 5%;
+    text-align: left;
+  
+  }
+  
+  .login_Developer1 h1 {
+    margin: 0;
+    text-align: center;
+    font-size: 20px;
+    
+  }
+  
+  .login_Developer1 label {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    font-size: 100%;
+    display: block;
+  }
+  
+  .login_Developer1 input {
+    width: 100%;
+    margin-bottom: 4%;
+  }
+  
+  .login_Developer1 input[type="text"],
+  .login_Developer1 input[type="number"]
+  .login_Developer1 input[type="date"]{
+  
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 30px;
+    color: #fff;
+    font-size: 90%;
+  }
+.boton{
+  margin: 0;
+    text-align: center;
+    font-size: 14px;
+  }
+  .buttoninsc{
+    border-radius: 10px;
+    margin-right: 20px;
+  }
+  .boton1{
+    margin: 0;
+      text-align: center;
+      font-size: 16px;
+      margin-right: 53px;
+    }
+
+    .boton4{
+      display: flex;
+      flex-direction: block;
+      margin-left: 130px;
+
+    }
+
+    .login_Developer2 {
+      width: 61%;
+      height: 75%;
+      background: rgba(0, 0, 0, 0.445); 
+      color: #fff;
+      top: 53%;
+      left: 50%;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      box-sizing:border-box;
+      padding: 2% 3%;
+      font-size: 14px;
+      border-radius: 5%;
+    }
+
+    .login_Developer3 {
+      width: 61%;
+      height: 115%;
+      background: rgba(0, 0, 0, 0.445); 
+      color: #fff;
+      top: 75%;
+      left: 50%;
+      bottom: 30%;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      box-sizing:border-box;
+      padding: 1px 3%;
+      font-size: 14px;
+      border-radius: 5%;
+    
+    }
